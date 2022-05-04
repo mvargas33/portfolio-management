@@ -57,6 +57,7 @@ def gen_fixtures():
     ("AMZN", "stock")
   ]
 
+  print(f"Fetching the following stocks from a public API: {' '.join([e[0] for e in stocks_list])}")
   for i, pair in enumerate(stocks_list):
     if i % 5 == 0 and i > 0:  # 5 calls per minute
       print("Waiting 1 minute because of the API limitations ...")

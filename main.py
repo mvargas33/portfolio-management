@@ -20,5 +20,5 @@ def test_simple_portfolio():
     print(f"\n{portfolio.name} \t| Profit:  {profit*100:.2f} % \t| Annualized return: {annualized_return*100:.2f} %")
 
 if __name__ == "__main__":
-    # gen_fixtures()
-    test_simple_portfolio()
+  gen_fixtures()
+  test_simple_portfolio()
