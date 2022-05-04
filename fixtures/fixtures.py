@@ -1,7 +1,8 @@
-import json, requests, os
+import json, requests, os, time
 from dotenv import load_dotenv
 
 load_dotenv() # Load loacl env for API Key
+path = os.path.dirname(os.path.abspath(__file__))
 
 """
 Gets the historical data prices for the specified symbol.
@@ -20,7 +21,7 @@ def get_hitorical_ticker(symbol="AAPL", currency_type="stock"):
       }
       simplified[key] = point
 
-    with open(f'./fixtures/{symbol}.json', 'w') as outfile:
+    with open(os.path.join(path, "data", f'{symbol}.json'), 'w') as outfile:
       json.dump(simplified, outfile)
 
 
@@ -36,7 +37,7 @@ def get_hitorical_ticker(symbol="AAPL", currency_type="stock"):
       }
       simplified[key] = point
 
-    with open(f'./fixtures/{symbol}.json', 'w') as outfile:
+    with open(os.path.join(path, "data", f'{symbol}.json'), 'w') as outfile:
       json.dump(simplified, outfile)
 
 """
@@ -49,7 +50,6 @@ def gen_fixtures():
     ("LINK", "crypto"),
     ("ADA", "crypto"),
     ("DOGE", "crypto"),
-    ("XLM", "crypto"),
     ("TSLA", "stock"),
     ("AAPL", "stock"),
     ("IBM", "stock"),
@@ -57,5 +57,8 @@ def gen_fixtures():
     ("AMZN", "stock")
   ]
 
-  for pair in stocks_list:
-      get_hitorical_ticker(symbol=pair[0], currency_type=pair[1])
+  for i, pair in enumerate(stocks_list):
+    if i % 5 == 0 and i > 0:  # 5 calls per minute
+      print("Waiting 1 minute because of the API limitations ...")
+      time.sleep(65)
+    get_hitorical_ticker(symbol=pair[0], currency_type=pair[1])
