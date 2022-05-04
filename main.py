@@ -5,7 +5,7 @@ from fixtures.fixtures import gen_fixtures
 def test_simple_portfolio():
   start_date = "2020-01-06"
   end_date = "2022-01-06"
-  verbose = False
+  verbose = True
 
   # Portfolios
   btc_portfolio = Portfolio(name="Bitcoin portfolio", stocks_symbols=["BTC"], stocks_weights=[1], verbose=verbose)

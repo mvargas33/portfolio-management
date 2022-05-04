@@ -1,4 +1,5 @@
 import json, os
+from datetime import datetime
 
 class Portfolio:
   """
@@ -55,20 +56,23 @@ class Portfolio:
     The annualized return of the portfolio between two dates
   """
   def profit(self, date_from="", date_to=""):
-    gross_profit = 0
+    days = abs((datetime.strptime(date_to, "%Y-%m-%d") - datetime.strptime(date_from, "%Y-%m-%d")).days)
+    accum_profit = 0
+
     if self.verbose:
-      print(f'\nSymbol \t| Intial price \t| Final price \t|  Variation(%)\t| Weight(%) \t|Pos. profit(%)\t| Acum. profit(%)')
+      print(f'\nSymbol \t| Intial price \t| Final price \t| Variation (%)\t| Position (%) \t| Return \t| Cum. Return(%)')
       print(f'------------------------------------------------------------------------------------------------------')
+
     for element in self.stocks_weights:
       stock, weight = element
       initial_price = stock.price(date=date_from)[0]  # Open price
       final_price = stock.price(date=date_to)[1]  # Close price
 
-      gross_profit += weight * ((final_price/initial_price) - 1)
+      accum_profit += weight * ((final_price/initial_price) - 1)
       if self.verbose:
-        print(f'{stock.symbol} \t| {initial_price:.4f} \t| {final_price:.4f} \t| {((final_price/initial_price) - 1)*100:.4f} \t| {weight:.4f} \t| { weight * ((final_price/initial_price) - 1):.4f} \t| {gross_profit:.4f}')
+        print(f'{stock.symbol} \t| {initial_price:.4f} \t| {final_price:.4f} \t| {((final_price/initial_price) - 1)*100:.4f} \t| {weight:.4f} \t| { weight * ((final_price/initial_price) - 1):.4f} \t| {accum_profit:.4f}')
     
-    return gross_profit, 0
+    return accum_profit, (1 + accum_profit)**(365/days) - 1
 
 
 class Stock:
