@@ -7,14 +7,17 @@ class Portfolio:
 
   Parameters
   ----------
-  stocks: list of Stock objetcs
+  stocks_symbols: list of Stock objetcs
     The list of stocks for this portfolio
   
-  weights: list of float
+  stocks_weights: list of float
     The weight of each Stock in the Portfolio
 
   name: str
     The name of the portfolio
+  
+  verbose: bool
+    Use True to print the weighted return of each stock
 
   Observations
   ------------
@@ -30,8 +33,8 @@ class Portfolio:
     if sum(stocks_weights) != 1.0:
       raise Exception("The sum of all stocks weights must be 1.0")
 
-    self.stocks = [Stock(symbol=stock_symbol) for stock_symbol in stocks_symbols]
-    self.stocks_weights = zip(self.stocks, stocks_weights)
+    self.stocks = [Stock(symbol=stock_symbol) for stock_symbol in stocks_symbols]  # Create Stock objects
+    self.stocks_weights = zip(self.stocks, stocks_weights)  # Pair with weight
     self.name = name
     self.verbose = verbose
 
@@ -60,7 +63,7 @@ class Portfolio:
     accum_profit = 0
 
     if self.verbose:
-      print(f'\nSymbol \t| Intial price \t| Final price \t| Variation (%)\t| Position (%) \t| Return \t| Cum. Return(%)')
+      print(f'\nSymbol \t| Intial price \t| Final price \t| Variation (%)\t| Position (%) \t| Return \t| Cum. Return')
       print(f'------------------------------------------------------------------------------------------------------')
 
     for element in self.stocks_weights:
