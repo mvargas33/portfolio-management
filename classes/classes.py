@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Portfolio:
   """
-  Base class for every Portfolio.
+  Base class for every Portfolio
 
   Parameters
   ----------
@@ -23,9 +23,9 @@ class Portfolio:
   ------------
 
   - The Portfolio is measured in USD
-  - The are no transactions in the system. You create a Portfolio, you end with the same Stocks.
-  - Weights are actually the percentage of participation of the portfolio at the start.
-  - You can only see the consecuences of the initial Portfolio.
+  - The are no transactions in the system. You create a Portfolio, you end with the same Stocks
+  - Weights are the percentage of participation of each stock in the portfolio
+  - You can only see the consecuences of the initial Portfolio
   """
   def __init__(self, stocks_symbols=[], stocks_weights=[], name="My portfolio", verbose=False) -> None:
     if len(stocks_symbols) != len(stocks_weights):
@@ -54,9 +54,15 @@ class Portfolio:
   -------
 
   profit : float
-    The simple profit of the portfolio between two dates
+    The profit of the portfolio between two dates
   annualized return : float
     The annualized return of the portfolio between two dates
+
+  Observations
+  ------------
+
+  - You buy with 'open price'
+  - You sell with 'close price'
   """
   def profit(self, date_from="", date_to=""):
     days = abs((datetime.strptime(date_to, "%Y-%m-%d") - datetime.strptime(date_from, "%Y-%m-%d")).days)

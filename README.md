@@ -20,7 +20,7 @@ AAPL, ADA, AMZN, BTC, DOGE, ETH, IBM, LINK, MSFT, TSLA, XLM
 
 - Get a public, free-to-use API key from Alphavantage [here](https://www.alphavantage.co)
 - Create a .env file in the root directory and add the following line `ALPHAVANTAGE_API_KEY=XXXXXXXXXXXXXX`
-- To add stocks, update the list inside the function `gen_fixtures` at `fixtures/fixtures.py`. See stocks available in the [Alphavantage](https://www.alphavantage.co)
+- To add stocks, update the list inside the function `gen_fixtures` at `fixtures/fixtures.py`. See stocks available in [Alphavantage](https://www.alphavantage.co)
 - To fetch stock prices, uncomment the function `gen_fixtures` inside `main` function
 
 # Package files and directories
