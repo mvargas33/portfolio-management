@@ -2,7 +2,7 @@
 
 This repo allows users to simulate a custom portfolio, with US stocks and crypto. You buy stocks once, and see the performace of it until a specific date. Portfolio is measured in USD. No tax nor inflation is considered.
 
-Create and simulate your portfolio inside the `main.py` file.
+Create and simulate your portfolio inside the `main.py` file. Use 2020-01-06 or above.
 
 The repo has already some stocks to play with (last update 2022-05-04):
 
@@ -21,7 +21,7 @@ AAPL, ADA, AMZN, BTC, DOGE, ETH, IBM, LINK, MSFT, TSLA, XLM
 - Get a public, free-to-use API key from Alphavantage [here](https://www.alphavantage.co)
 - Create a .env file in the root directory and add the following line `ALPHAVANTAGE_API_KEY=XXXXXXXXXXXXXX`
 - To add stocks, update the list inside the function `gen_fixtures` at `fixtures/fixtures.py`. See stocks available in [Alphavantage](https://www.alphavantage.co)
-- To fetch stock prices, uncomment the function `gen_fixtures` inside `main` function
+- To fetch stock prices, uncomment the function `gen_fixtures` inside `main` function at `main.py`
 
 # Package files and directories
 
